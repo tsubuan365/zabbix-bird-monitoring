@@ -59,6 +59,10 @@ Finally, apply the template to the host where BIRD is running:
 4. Click `Add` and select the `Template App BIRD by Zabbix agent2 active`.
 5. Click `Update` to apply the template to the host.
 
+## Graphs
+Here are graphs of the results of monitoring the logs for two days:
+![graphs](images/graphs.png)
+
 ## Tested version
 This program has been tested and verified in the following environment:
 
