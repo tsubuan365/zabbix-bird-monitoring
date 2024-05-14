@@ -11,7 +11,6 @@ Get the above `5720 ms` and `47 events` values and create a graph.
 ## Installation
 ### BIRD Configuration
 To enable logging, add the following lines to your BIRD configuration files (`bird.conf` and `bird6.conf`):
-
 ```plaintext
 log [path to log file] all;
 debug latency on;
@@ -19,7 +18,6 @@ debug latency limit 1s;
 ```
 
 For example:
-
 ```plaintext
 log "/var/log/bird/bird.log" all;
 debug latency on;
@@ -50,16 +48,18 @@ Next, set up the following Zabbix macros for your environment:
 - `$BIRD_IPV6_LOGFILE_PATH`: Full path to the log file for the IPv6 daemon.
 - `$BIRD_BGP_SESSION_THRESHOLD_MS`: Threshold value for alarms.
 
+![macros](images/macros.png)
+
 ### Apply Template to Host
 Finally, apply the template to the host where BIRD is running:
 
 1. Navigate to `Configuration > Hosts` in the Zabbix dashboard.
 2. Select the host where BIRD is running.
 3. Go to the `Templates` tab.
-4. Click `Add` and select the `	Template App BIRD by Zabbix agent2 active`.
+4. Click `Add` and select the `Template App BIRD by Zabbix agent2 active`.
 5. Click `Update` to apply the template to the host.
 
-## Usage
+## Tested version
 This program has been tested and verified in the following environment:
 
 - **BIRD**: 2.0.8
