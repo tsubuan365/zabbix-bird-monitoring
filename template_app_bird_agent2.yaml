@@ -1,0 +1,104 @@
+zabbix_export:
+  version: '6.0'
+  date: '2024-05-14T19:03:25Z'
+  groups:
+    - uuid: a571c0d144b14fd4a87a9d9b2aa9fcd6
+      name: Templates/Applications
+  templates:
+    - uuid: aa9085746e6e4c9694c9ca959f8dca7e
+      template: 'Template App BIRD by Zabbix agent2 active'
+      name: 'Template App BIRD by Zabbix agent2 active'
+      groups:
+        - name: Templates/Applications
+      items:
+        - uuid: 7496a434499a4b259ed5b0629a1164ad
+          name: 'BIRD: I/O loop cycle events in IPv4 daemon'
+          type: ZABBIX_ACTIVE
+          key: 'bird.log.io.events[{$BIRD_IPV4_LOGFILE_PATH}]'
+          delay: 10m
+          value_type: FLOAT
+          units: events
+          tags:
+            - tag: Application
+              value: BIRD
+        - uuid: e11281ad94d841eba9a3c1599fa020d2
+          name: 'BIRD: I/O loop cycle events in IPv6 daemon'
+          type: ZABBIX_ACTIVE
+          key: 'bird.log.io.events[{$BIRD_IPV6_LOGFILE_PATH}]'
+          delay: 10m
+          value_type: FLOAT
+          units: events
+          tags:
+            - tag: Application
+              value: BIRD
+        - uuid: c7bf07ec3b0a433c84585cdfcf16c957
+          name: 'BIRD: I/O loop cycle time in IPv4 daemon'
+          type: ZABBIX_ACTIVE
+          key: 'bird.log.io.time[{$BIRD_IPV4_LOGFILE_PATH}]'
+          delay: 10m
+          value_type: FLOAT
+          units: ms
+          tags:
+            - tag: Application
+              value: BIRD
+          triggers:
+            - uuid: cd69de4cc64447148ce01932fe517e90
+              expression: 'last(/Template App BIRD by Zabbix agent2 active/bird.log.io.time[{$BIRD_IPV4_LOGFILE_PATH}])>{$BIRD_BGP_SESSION_THRESHOLD_MS}'
+              name: 'BIRD: I/O loop cycle time high alert in IPv4 daemon'
+              opdata: 'BIRD: I/O loop cycle took more than {$BIRD_BGP_SESSION_THRESHOLD_MS} ms'
+              priority: WARNING
+              description: 'BIRD daemon alarms when reconfiguration time exceeds {$BIRD_BGP_SESSION_THRESHOLD_MS} ms. Consider improving I/O time in the application environment.'
+              tags:
+                - tag: Application
+                  value: BIRD
+        - uuid: 85e7a22307534feba37ab2aca4f7409d
+          name: 'BIRD: I/O loop cycle time in IPv6 daemon'
+          type: ZABBIX_ACTIVE
+          key: 'bird.log.io.time[{$BIRD_IPV6_LOGFILE_PATH}]'
+          delay: 10m
+          value_type: FLOAT
+          units: ms
+          tags:
+            - tag: Application
+              value: BIRD
+          triggers:
+            - uuid: c59ef357363845c6b0307c99a8b7c7f6
+              expression: 'last(/Template App BIRD by Zabbix agent2 active/bird.log.io.time[{$BIRD_IPV6_LOGFILE_PATH}])>{$BIRD_BGP_SESSION_THRESHOLD_MS}'
+              name: 'BIRD: I/O loop cycle time high alert in IPv6 daemon'
+              opdata: 'BIRD: I/O loop cycle took more than {$BIRD_BGP_SESSION_THRESHOLD_MS} ms'
+              priority: WARNING
+              description: 'BIRD daemon alarms when reconfiguration time exceeds {$BIRD_BGP_SESSION_THRESHOLD_MS} ms. Consider improving I/O time in the application environment.'
+              tags:
+                - tag: Application
+                  value: BIRD
+  graphs:
+    - uuid: 86be548035ed457bafefe4e83d27e80c
+      name: 'BIRD: I/O loop cycle performance metrics in IPv4 daemon'
+      graph_items:
+        - color: 199C0D
+          yaxisside: RIGHT
+          calc_fnc: ALL
+          item:
+            host: 'Template App BIRD by Zabbix agent2 active'
+            key: 'bird.log.io.time[{$BIRD_IPV4_LOGFILE_PATH}]'
+        - sortorder: '1'
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Template App BIRD by Zabbix agent2 active'
+            key: 'bird.log.io.events[{$BIRD_IPV4_LOGFILE_PATH}]'
+    - uuid: 777ca3424daf4740a021294b9ea15166
+      name: 'BIRD: I/O loop cycle performance metrics in IPv6 daemon'
+      graph_items:
+        - color: 199C0D
+          yaxisside: RIGHT
+          calc_fnc: ALL
+          item:
+            host: 'Template App BIRD by Zabbix agent2 active'
+            key: 'bird.log.io.time[{$BIRD_IPV6_LOGFILE_PATH}]'
+        - sortorder: '1'
+          color: F63100
+          calc_fnc: ALL
+          item:
+            host: 'Template App BIRD by Zabbix agent2 active'
+            key: 'bird.log.io.events[{$BIRD_IPV6_LOGFILE_PATH}]'
